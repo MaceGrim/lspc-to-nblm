@@ -1,0 +1,105 @@
+# =============================================================================
+# Latent Space Paper Club Podcast Pipeline — Configuration
+# =============================================================================
+# Copy this file to config.yaml and fill in the required values.
+# Fields marked REQUIRED have no usable default and must be set.
+# All other fields show their defaults and can be omitted.
+
+# --- Luma event scraping ---------------------------------------------------
+luma:
+  # URL for the Luma calendar page to scrape
+  calendar_url: "https://lu.ma/ls"
+  # Only process events whose title contains this string
+  event_filter: "Paper Club"
+
+# --- YouTube video discovery ------------------------------------------------
+youtube:
+  # Channel URL used for video matching
+  channel_url: "https://www.youtube.com/@LatentSpaceTV"
+  # How many days around the event date to look for a matching video
+  match_window_days: 7
+  # How many recent videos to scan in the uploads playlist
+  playlist_depth: 30
+
+# --- NotebookLM podcast generation ------------------------------------------
+notebooklm:
+  # Prompt sent to NotebookLM for podcast generation
+  prompt: >-
+    Deeply explain this paper, covering motivation, methodology,
+    key results, and implications. Make it accessible to a technical
+    audience that may not be domain experts.
+  # NotebookLM audio format
+  format: "deep-dive"
+  # NotebookLM audio length
+  length: "standard"
+
+# --- Fallback podcast generation (LLM + TTS) --------------------------------
+fallback:
+  # Set to false to skip fallback when NotebookLM fails
+  enabled: true
+  # LLM model for dialogue script generation (via litellm)
+  llm_model: "gpt-4o-mini"
+  # OpenAI TTS model
+  tts_model: "tts-1"
+  # Voices for two-speaker dialogue: first = Host, second = Expert
+  tts_voices:
+    - "alloy"
+    - "echo"
+  # Max characters per TTS API call (script is chunked)
+  chunk_max_chars: 4096
+
+# --- RSS feed ---------------------------------------------------------------
+rss:
+  title: "Latent Space Paper Club Deep Dives"
+  description: "AI-generated deep-dive podcasts on papers discussed at the Latent Space Paper Club"
+  author: "Mason Grimshaw"
+  # REQUIRED: Base URL where the podcast is hosted (e.g. https://username.github.io/repo)
+  base_url: ""
+  owner_name: "Mason Grimshaw"
+  # REQUIRED: Email address for the podcast owner (used in RSS feed)
+  owner_email: ""
+  # iTunes category and subcategory
+  category: "Technology"
+  subcategory: "Tech News"
+  explicit: false
+
+# --- Error handling ---------------------------------------------------------
+errors:
+  # Maximum retry attempts for transient failures
+  max_retries: 3
+  # Base delay in seconds for exponential backoff
+  backoff_base: 60
+
+# --- Schedule ---------------------------------------------------------------
+schedule:
+  # Days of the week to run the pipeline (lowercase)
+  # Pipeline exits quickly (code 0) if no unprocessed events exist.
+  # Daily is recommended so late-arriving papers/videos are caught.
+  run_days:
+    - "monday"
+    - "tuesday"
+    - "wednesday"
+    - "thursday"
+    - "friday"
+    - "saturday"
+    - "sunday"
+
+# --- Security ---------------------------------------------------------------
+security:
+  # Domains allowed for paper/supplementary downloads (SSRF protection)
+  allowed_domains:
+    - "arxiv.org"
+    - "openai.com"
+    - "anthropic.com"
+    - "ai.meta.com"
+    - "blog.google"
+    - "deepmind.google"
+    - "huggingface.co"
+    - "github.com"
+    - "github.io"
+  # Max bytes per paper download (100 MB)
+  max_download_bytes: 100000000
+  # Max bytes per supplementary content download (5 MB)
+  max_supplementary_bytes: 5000000
+  # Reject http:// URLs
+  enforce_https: true

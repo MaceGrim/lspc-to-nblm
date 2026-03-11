@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Latent Space Paper Club Deep Dives</title>
+    <link>https://macegrim.github.io/lspc-to-nblm</link>
+    <description>AI-generated deep-dive podcasts on papers discussed at the Latent Space Paper Club</description>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 Mar 2026 18:00:04 +0000</lastBuildDate>
+    <itunes:author>Mason Grimshaw</itunes:author>
+    <itunes:image href="https://macegrim.github.io/lspc-to-nblm/cover.png" />
+    <itunes:owner>
+      <itunes:name>Mason Grimshaw</itunes:name>
+      <itunes:email>mbgrimshaw@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:category text="Technology">
+      <itunes:category text="Tech News" />
+    </itunes:category>
+    <itunes:explicit>false</itunes:explicit>
+    <atom:link rel="self" type="application/rss+xml" href="https://macegrim.github.io/lspc-to-nblm/feed.xml" />
+    <item>
+      <title>LLM Paper Club (Show-o2: Improved Native Unified Multimodal Models) (2025-12-31)</title>
+      <description>LLM Paper Club (Show-o2: Improved Native Unified Multimodal Models)
+
+Paper: https://arxiv.org/abs/2506.15564</description>
+      <guid isPermaLink="false">20251231-9938d5c3</guid>
+      <pubDate>Wed, 11 Mar 2026 18:00:04 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20251231-9938d5c3.mp3" type="audio/mpeg" length="18895979" />
+      <itunes:duration>00:19:40</itunes:duration>
+      <itunes:summary>LLM Paper Club (Show-o2: Improved Native Unified Multimodal Models)
+
+Paper: https://arxiv.org/abs/2506.15564</itunes:summary>
+    </item>
+  </channel>
+</rss>

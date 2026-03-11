@@ -1,0 +1,38 @@
+# Pipeline runtime
+tmp/
+logs/
+config.yaml
+.env
+credentials/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pipeline state (track in repo for production, ignore for dev)
+# processed.json
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,14 @@
+notebooklm-py[browser]
+yt-dlp
+arxiv
+beautifulsoup4
+requests
+trafilatura
+mutagen
+pymupdf
+pyyaml
+litellm
+openai
+filelock
+feedparser  # for test validation
+responses   # for test HTTP mocking

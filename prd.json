@@ -1,0 +1,196 @@
+{
+  "project": "Latent Space Paper Club Podcast Pipeline",
+  "generated_from": "PRD.md",
+  "generated_at": "2026-03-08T15:30:00Z",
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "Scrape Luma Event for Paper Club Session",
+      "description": "As a user I want to automatically discover the latest Paper Club event from Luma so that I don't have to manually find the paper URL each week.",
+      "acceptance_criteria": [
+        "Script fetches the Luma calendar page at https://lu.ma/ls",
+        "Filters events containing 'Paper Club' (case-insensitive) in the title",
+        "Selects the most recent past event with timezone-aware datetime comparison",
+        "Parses event description to extract paper URLs (arxiv.org or .pdf) and supplementary URLs",
+        "arXiv URLs normalized to https://arxiv.org/abs/{id} form",
+        "Returns PaperClubEvent dataclass with title, date, event_url, paper_urls, supplementary_urls",
+        "If no paper URLs found, returns event with paper_urls=[] and logs WARNING"
+      ],
+      "test_command": "python -m pytest tests/test_scraper.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-002",
+      "title": "Download Paper PDF",
+      "description": "As a user I want to automatically download the paper PDF from arXiv or a direct URL so that it can be fed into NotebookLM.",
+      "acceptance_criteria": [
+        "Given arXiv URL, converts to PDF URL and downloads",
+        "Given direct PDF URL, downloads the file",
+        "Saves PDF to tmp/ with format {arxiv_id}.pdf or {url_hash[:12]}.pdf",
+        "Returns pathlib.Path of downloaded PDF",
+        "Raises PaperDownloadError on failure",
+        "Respects arXiv rate limiting (3-second delay)",
+        "For multiple papers, downloads all and returns list[Path]"
+      ],
+      "test_command": "python -m pytest tests/test_papers.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-003",
+      "title": "Find and Download YouTube Video Audio",
+      "description": "As a user I want to find the matching Paper Club video on YouTube and download its audio so that NotebookLM can use the discussion as context.",
+      "acceptance_criteria": [
+        "Two-step discovery: list videos from @LatentSpaceTV, match against event",
+        "Matching: title contains 'Paper Club' AND upload/release date within match_window_days",
+        "Downloads audio-only using yt-dlp -x --audio-format mp3 --audio-quality 128K",
+        "Saves to tmp/{video_id}.mp3",
+        "Returns Path of audio or None if no match",
+        "Logs WARNING if no match found"
+      ],
+      "test_command": "python -m pytest tests/test_youtube.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-004",
+      "title": "Download Supplementary Content",
+      "description": "As a user I want to grab any blog posts or threads linked in the event description so that NotebookLM has additional context.",
+      "acceptance_criteria": [
+        "Fetches text content from non-paper URLs using trafilatura",
+        "Saves each as {url_hash[:12]}.txt in tmp/",
+        "Returns list[Path] of successfully fetched files",
+        "URLs that fail are logged at WARNING and skipped"
+      ],
+      "test_command": "python -m pytest tests/test_supplementary.py -v",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-005",
+      "title": "Generate Podcast via NotebookLM",
+      "description": "As a user I want to feed the paper(s), video audio, and supplementary content into NotebookLM so that it generates a deep-dive podcast episode.",
+      "acceptance_criteria": [
+        "Creates NotebookLM notebook titled 'LSPC: {event_title} ({date})'",
+        "Uploads all paper PDFs, video audio, and supplementary text as sources",
+        "Calls generate_audio() with configured format, length, and focus prompt",
+        "Episode slug = {date_YYYYMMDD}-{sha256(event_url)[:8]}",
+        "Downloads MP3 to docs/episodes/{slug}.mp3",
+        "Returns Path of downloaded MP3",
+        "Raises PodcastGenerationError if NotebookLM fails after retries"
+      ],
+      "test_command": "python -m pytest tests/test_podcast_gen.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-006",
+      "title": "LLM+TTS Podcast Fallback",
+      "description": "As a user I want to fall back to an LLM+TTS pipeline so that I still get episodes if notebooklm-py breaks.",
+      "acceptance_criteria": [
+        "Extracts transcript from YouTube captions or Whisper transcription",
+        "Generates two-speaker dialogue via litellm with configurable model",
+        "Converts dialogue to audio via OpenAI TTS with two voices",
+        "Saves MP3 to docs/episodes/{slug}.mp3",
+        "Triggered automatically when US-005 raises PodcastGenerationError",
+        "Raises FallbackConfigError if OPENAI_API_KEY missing"
+      ],
+      "test_command": "python -m pytest tests/test_fallback.py -v",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-007",
+      "title": "Generate and Update RSS Feed",
+      "description": "As a user I want to generate a valid podcast RSS feed so that Apple Podcasts can sync new episodes.",
+      "acceptance_criteria": [
+        "Generates RSS 2.0 XML with itunes and atom namespaces",
+        "Each item has title, description, pubDate, guid, enclosure, itunes:duration",
+        "Feed channel includes title, description, author, itunes:image, atom:link",
+        "Feed validates with feedparser (bozo == 0)",
+        "Episodes ordered newest first",
+        "Writes to docs/feed.xml preserving existing episodes"
+      ],
+      "test_command": "python -m pytest tests/test_rss.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-008",
+      "title": "Deduplication and State Tracking",
+      "description": "As a user I want to track which episodes have been processed so that the same session isn't processed twice.",
+      "acceptance_criteria": [
+        "Maintains processed.json mapping event URLs to processing metadata",
+        "Event marked processed only after episode successfully pushed",
+        "Checks canonicalized event URL and paper URL set for dedup",
+        "Re-processes if live paper URLs differ from stored set",
+        "Events with empty paper_urls exit with code 5 (retriable)"
+      ],
+      "test_command": "python -m pytest tests/test_state.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-009",
+      "title": "Pipeline Orchestration",
+      "description": "As a user I want to run the full pipeline with a single command so that everything happens end-to-end.",
+      "acceptance_criteria": [
+        "python -m src.pipeline runs the full pipeline",
+        "Accepts --paper-url, --video-url, --force, --backfill flags",
+        "Retries up to max_retries with exponential backoff",
+        "Exits with code 2 if video not found (retriable)",
+        "Logs all actions to logs/run_{timestamp}.log",
+        "No secrets in log output",
+        "File lock prevents overlapping runs (exit code 3)"
+      ],
+      "test_command": "python -m pytest tests/test_pipeline.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-010",
+      "title": "GitHub Pages Publishing",
+      "description": "As a user I want to automatically push new episodes to GitHub Pages so that the RSS feed updates without manual intervention.",
+      "acceptance_criteria": [
+        "Two-commit publish: episode+feed first, then state update",
+        "Push failure at step 4 reverts via git reset --hard HEAD~1",
+        "Push failure at step 5 allows idempotent retry next run",
+        "Pre-commit size check: MP3 < 95MB or re-encode",
+        "Credential files, tmp/, logs/, .env in .gitignore"
+      ],
+      "test_command": "python -m pytest tests/test_publish.py -v",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-011",
+      "title": "Cron Job Setup",
+      "description": "As a user I want to set up a scheduled cron job on WSL so that the pipeline runs automatically.",
+      "acceptance_criteria": [
+        "cron_setup.sh prints crontab line and prompts for confirmation",
+        "Schedule: daily at configurable time with internal day-gating",
+        "Uses absolute paths to Python and project directory",
+        "Detects existing entry and skips duplicate installation"
+      ],
+      "test_command": "bash cron_setup.sh --dry-run",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-012",
+      "title": "Configuration File",
+      "description": "As a user I want to configure the pipeline via a YAML file so that I can adjust settings without editing code.",
+      "acceptance_criteria": [
+        "config.yaml contains all settings (luma, youtube, notebooklm, fallback, rss, errors, schedule)",
+        "Pipeline loads config at startup into typed dataclass",
+        "Missing config.yaml raises FileNotFoundError pointing to config.example.yaml",
+        "config.example.yaml committed with all fields documented",
+        "Invalid YAML or missing fields raises ConfigError"
+      ],
+      "test_command": "python -m pytest tests/test_config.py -v",
+      "priority": "P1",
+      "passes": false
+    }
+  ]
+}
