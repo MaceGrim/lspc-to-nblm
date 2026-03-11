@@ -5,7 +5,7 @@
     <link>https://macegrim.github.io/lspc-to-nblm</link>
     <description>AI-generated deep-dive podcasts on papers discussed at the Latent Space Paper Club</description>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Mar 2026 18:00:04 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 22:00:16 +0000</lastBuildDate>
     <itunes:author>Mason Grimshaw</itunes:author>
     <itunes:image href="https://macegrim.github.io/lspc-to-nblm/cover.png" />
     <itunes:owner>
@@ -17,6 +17,122 @@
     </itunes:category>
     <itunes:explicit>false</itunes:explicit>
     <atom:link rel="self" type="application/rss+xml" href="https://macegrim.github.io/lspc-to-nblm/feed.xml" />
+    <item>
+      <title>LLM Paper Club (Moltbook analysis + Persona Selection) (2026-03-11)</title>
+      <description>LLM Paper Club (Moltbook analysis + Persona Selection)
+
+Paper: https://arxiv.org/pdf/2602.13284</description>
+      <guid isPermaLink="false">20260311-8e82d468</guid>
+      <pubDate>Wed, 11 Mar 2026 22:00:16 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260311-8e82d468.mp3" type="audio/mpeg" length="20890062" />
+      <itunes:duration>00:21:45</itunes:duration>
+      <itunes:summary>LLM Paper Club (Moltbook analysis + Persona Selection)
+
+Paper: https://arxiv.org/pdf/2602.13284</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club (Discovering Multiagent Learning Algorithms with Large Language Models (2026-03-04)</title>
+      <description>LLM Paper Club (Discovering Multiagent Learning Algorithms with Large Language Models
+
+Paper: https://arxiv.org/abs/2602.16928</description>
+      <guid isPermaLink="false">20260304-90952e5a</guid>
+      <pubDate>Wed, 11 Mar 2026 22:00:15 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260304-90952e5a.mp3" type="audio/mpeg" length="18986257" />
+      <itunes:duration>00:19:46</itunes:duration>
+      <itunes:summary>LLM Paper Club (Discovering Multiagent Learning Algorithms with Large Language Models
+
+Paper: https://arxiv.org/abs/2602.16928</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club (LLaDA 2.1 + RL via Self-Distillation) (2026-02-11)</title>
+      <description>LLM Paper Club (LLaDA 2.1 + RL via Self-Distillation)
+
+Paper: https://arxiv.org/pdf/2601.20802
+
+Paper: https://arxiv.org/abs/2602.06964</description>
+      <guid isPermaLink="false">20260211-ca6213e6</guid>
+      <pubDate>Wed, 11 Mar 2026 22:00:15 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260211-ca6213e6.mp3" type="audio/mpeg" length="24073657" />
+      <itunes:duration>00:25:04</itunes:duration>
+      <itunes:summary>LLM Paper Club (LLaDA 2.1 + RL via Self-Distillation)
+
+Paper: https://arxiv.org/pdf/2601.20802
+
+Paper: https://arxiv.org/abs/2602.06964</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club (Kimi K2.5 Tech Report + Alec Radford on Data Filtering) (2026-02-04)</title>
+      <description>LLM Paper Club (Kimi K2.5 Tech Report + Alec Radford on Data Filtering)
+
+Paper: https://github.com/MoonshotAI/Kimi-K2.5/blob/master/tech_report.pdf
+
+Paper: https://arxiv.org/abs/2601.21571</description>
+      <guid isPermaLink="false">20260204-602909c9</guid>
+      <pubDate>Wed, 11 Mar 2026 22:00:15 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260204-602909c9.mp3" type="audio/mpeg" length="18498499" />
+      <itunes:duration>00:19:16</itunes:duration>
+      <itunes:summary>LLM Paper Club (Kimi K2.5 Tech Report + Alec Radford on Data Filtering)
+
+Paper: https://github.com/MoonshotAI/Kimi-K2.5/blob/master/tech_report.pdf
+
+Paper: https://arxiv.org/abs/2601.21571</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club (Recursive Language Models, Meta Confucius Code Agent) (2026-01-28)</title>
+      <description>LLM Paper Club (Recursive Language Models, Meta Confucius Code Agent)
+
+Paper: https://arxiv.org/pdf/2512.10398
+
+Paper: https://arxiv.org/pdf/2512.24601v1</description>
+      <guid isPermaLink="false">20260128-e8dfed1f</guid>
+      <pubDate>Wed, 11 Mar 2026 22:00:15 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260128-e8dfed1f.mp3" type="audio/mpeg" length="18492648" />
+      <itunes:duration>00:19:15</itunes:duration>
+      <itunes:summary>LLM Paper Club (Recursive Language Models, Meta Confucius Code Agent)
+
+Paper: https://arxiv.org/pdf/2512.10398
+
+Paper: https://arxiv.org/pdf/2512.24601v1</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club (Midtraining Bridges Pretraining and Posttraining Distributions) (2026-02-25)</title>
+      <description>LLM Paper Club (Midtraining Bridges Pretraining and Posttraining Distributions)
+
+Paper: https://arxiv.org/abs/2510.14865</description>
+      <guid isPermaLink="false">20260225-86a03fce</guid>
+      <pubDate>Wed, 11 Mar 2026 21:06:46 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260225-86a03fce.mp3" type="audio/mpeg" length="17033970" />
+      <itunes:duration>00:17:44</itunes:duration>
+      <itunes:summary>LLM Paper Club (Midtraining Bridges Pretraining and Posttraining Distributions)
+
+Paper: https://arxiv.org/abs/2510.14865</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club (LTX-2: Efficient Joint Audio-Visual Foundation Model) (2026-01-14)</title>
+      <description>LLM Paper Club (LTX-2: Efficient Joint Audio-Visual Foundation Model)
+
+Paper: https://arxiv.org/abs/2601.03233</description>
+      <guid isPermaLink="false">20260114-2984b21e</guid>
+      <pubDate>Wed, 11 Mar 2026 21:06:46 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20260114-2984b21e.mp3" type="audio/mpeg" length="18702045" />
+      <itunes:duration>00:19:28</itunes:duration>
+      <itunes:summary>LLM Paper Club (LTX-2: Efficient Joint Audio-Visual Foundation Model)
+
+Paper: https://arxiv.org/abs/2601.03233</itunes:summary>
+    </item>
+    <item>
+      <title>LLM Paper Club: PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations: (Semantic IDs v2) (2025-12-10)</title>
+      <description>LLM Paper Club: PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations: (Semantic IDs v2)
+
+Paper: https://arxiv.org/pdf/2510.07784</description>
+      <guid isPermaLink="false">20251210-e0dfad13</guid>
+      <pubDate>Wed, 11 Mar 2026 21:06:46 +0000</pubDate>
+      <enclosure url="https://macegrim.github.io/lspc-to-nblm/episodes/20251210-e0dfad13.mp3" type="audio/mpeg" length="19099524" />
+      <itunes:duration>00:19:53</itunes:duration>
+      <itunes:summary>LLM Paper Club: PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations: (Semantic IDs v2)
+
+Paper: https://arxiv.org/pdf/2510.07784</itunes:summary>
+    </item>
     <item>
       <title>LLM Paper Club (Show-o2: Improved Native Unified Multimodal Models) (2025-12-31)</title>
       <description>LLM Paper Club (Show-o2: Improved Native Unified Multimodal Models)
